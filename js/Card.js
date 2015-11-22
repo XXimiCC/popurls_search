@@ -1,5 +1,4 @@
-CJ.Card = new Class(CJ.BaseClass);
-CJ.Card.extend({
+CJ.Card = new Class().extend(CJ.BaseClass).extend({
   id: null,
   x1: null,
   x1_h: null,
@@ -18,12 +17,12 @@ CJ.Card.extend({
   cardRank: null,
 
   tpl: _.template([
-    "<a href='<%=url%>'><img src='http://<%= image %>'> </a>"
+    "<a href='<%=url%>' target='_blank'><img src='http://<%= image %>'> </a>"
   ].join("")),
 
-  render: function () {
+  render: function (x) {
     return this.tpl({
-      image: this.x3,
+      image: this.x2,
       url: this.url
     });
   }
@@ -38,7 +37,6 @@ CJ.Card.getCards = function (suggestion, limit) {
       q: suggestion,
       limit: limit
     },
-    async: false,
     crossDomain: true
   })
     .then(function (data) {
